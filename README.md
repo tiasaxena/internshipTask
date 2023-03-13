@@ -2,7 +2,7 @@
 
 ## Setup Instructions
 
-### `git clone https://github.com/tiasaxena/ai4bharatInternship.git`
+### `https://github.com/tiasaxena/internshipTask.git`
 
 Open the terminal. <br/>
 Navigate to the folder where you want to clone the project. <br/>
