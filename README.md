@@ -92,4 +92,4 @@ The modal pops up on the screen when the user clicks any of the rows. The modal 
 
 <h2>4. Integrate Redux to store data</h2>
 Redux Toolkit is used to maintain a centralized data throughout the React App. The centralized data store and related methods and logics can be found in the src/redux folder. Redux prevents prop drilling which enhances the app's efficiency and prevents data leakage.
-<img src="https://github.com/tiasaxena/internshipTask/blob/main/src/assets/redux" />
+<img src="https://github.com/tiasaxena/internshipTask/blob/main/src/assets/redux.jpeg" />
