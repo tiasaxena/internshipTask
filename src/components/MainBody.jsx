@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Table, Thead, Tr, Th, filter } from '@chakra-ui/react';
 import { InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
 
 import TableData from './TableData';
@@ -27,17 +26,7 @@ const MainBody = () => {
           onChange={onTextChange}
         />
       </InputGroup>
-      <Table size='lg' variant={'striped'} colorScheme='facebook'>
-        <Thead>
-          <Tr className='text-'>
-            <Th isNumeric className='text-[2rem]'>Id</Th>
-            <Th className='text-[2rem]'>Name</Th>
-            <Th className='text-[2rem]'>Username</Th>
-            <Th className='text-[2rem]'>Email</Th>
-          </Tr>
-        </Thead>
         <TableData wordToSearch={filterSearch}/>
-      </Table>  
     </>
   );
 }
