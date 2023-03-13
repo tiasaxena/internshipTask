@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Tbody, Table, Tr, Td, Th, Thead, useDisclosure, Button, Modal, ModalOverlay, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter, useAccordion, Divider } from '@chakra-ui/react';
+import { Tbody, Table, Tr, Td, Th, Thead, useDisclosure, Button, Modal, ModalOverlay, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter } from '@chakra-ui/react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchUsers } from '../redux/action';
