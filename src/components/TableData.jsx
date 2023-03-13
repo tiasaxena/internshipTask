@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Tbody, Tr, Td, useDisclosure, Button, Modal, ModalOverlay, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter, useAccordion } from '@chakra-ui/react';
+import { Tbody, Table, Tr, Td, Th, Thead, useDisclosure, Button, Modal, ModalOverlay, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter, useAccordion, Divider } from '@chakra-ui/react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchUsers } from '../redux/action';
@@ -12,12 +12,7 @@ const TableData = (wordToSearch) => {
   const [ website, setWebsite ] = useState('');
   let [ matchedUsers, setMatchedUsers ] = useState([]);
 
-
   const dispatch = useDispatch();
-
-  useEffect( () => {
-    dispatch(fetchUsers())
-  }, []);
 
   const findMatches = (wordToMatch) => {
     const regex = new RegExp(wordToMatch, "gim");
@@ -43,7 +38,23 @@ const TableData = (wordToSearch) => {
   const overlay = <OverlayTwo />
   
   return ( <>
-        <Tbody >
+      {matchedUsers.length === 0 && users.length === 0 && 
+      <button
+        className="bg-[#319795] hover:bg-[#319795b0] text-white font-bold py-2 px-4 rounded mt-[1 rem]"
+        onClick={ () => dispatch(fetchUsers()) }>Fetch Users</button>
+      }
+      <Table size='lg' maxWidth={'100vw'} variant={'striped'} colorScheme='facebook'>
+        {matchedUsers.length > 0 || users.length > 0 && 
+          <Thead mb={'2rem'}>
+            <Tr>
+              <Th isNumeric className='text-[2rem]'>Id</Th>
+              <Th className='text-[2rem]'>Name</Th>
+              <Th className='text-[2rem]'>Username</Th>
+              <Th className='text-[2rem]'>Email</Th>
+            </Tr>
+          </Thead>
+        }
+        <Tbody>
           {matchedUsers.length ? matchedUsers.map((user, index) => {
             return <Tr key={index}  
               onClick={() => {
@@ -74,24 +85,18 @@ const TableData = (wordToSearch) => {
                 <Td className='font-medium text-base'>{user.username}</Td>
                 <Td className='font-medium text-base'>{user.email}</Td> 
               </Tr>
-          })
-          }
+          })}
         </Tbody>
+      </Table>   
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         {overlay}
         <ModalContent>
           <ModalHeader>{name}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <p>
-               <span className='font-bold'> Address: </span> {address.street}, {address.city}, {address.zipcode}
-            </p>
-            <p>
-            <span className='font-bold'> Phone: </span> {phone}
-            </p>
-            <p>
-            <span className='font-bold'> Website: </span> {website}
-            </p>
+            <p><span className='font-bold'>Address:</span>{address.street}, {address.city}, {address.zipcode}</p>
+            <p><span className='font-bold'> Phone: </span> {phone}</p>
+            <p><span className='font-bold'> Website: </span> {website}</p>
           </ModalBody>
           <ModalFooter>
             <Button onClick={onClose}>Close</Button>
