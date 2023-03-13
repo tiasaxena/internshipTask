@@ -9,12 +9,16 @@ Navigate to the folder where you want to clone the project. <br/>
 Run the above command to get a copy of the code in your local. <br/>
 
 ## How to run the code?
-
 ### `npm install`
 
 Run the above command once the project is cloned. <br/>
 The desired dependencies gets installed. <br/>
 In case of errors, make sure node and npm is install properly. <br/>
+Run
+`node -v`
+and
+`npm -v`
+to check the version of the node and npm install.
 
 
 ### `npm start`
@@ -88,3 +92,4 @@ The modal pops up on the screen when the user clicks any of the rows. The modal 
 
 <h2>4. Integrate Redux to store data</h2>
 Redux Toolkit is used to maintain a centralized data throughout the React App. The centralized data store and related methods and logics can be found in the src/redux folder. Redux prevents prop drilling which enhances the app's efficiency and prevents data leakage.
+<img src="https://github.com/tiasaxena/internshipTask/blob/main/src/assets/redux" />
