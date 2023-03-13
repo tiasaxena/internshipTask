@@ -1,31 +1,31 @@
 import * as types from './actionType';
 import axios from 'axios';
 
-let fetchPostsStart = () => ({
-    type: types.FETCH_POST_START,
+let fetchUsersStart = () => ({
+    type: types.FETCH_USER_START,
 });
 
-let fetchPostsSuccess = (posts) => ({
-    type: types.FETCH_POST_SUCCESS,
-    payload: posts,
+let fetchUsersSuccess = (users) => ({
+    type: types.FETCH_USER_SUCCESS,
+    payload: users,
 });
 
-let fetchPostsFailure = (error) => ({
-    type: types.FETCH_POST_FAILURE,
+let fetchUsersFailure = (error) => ({
+    type: types.FETCH_USER_FAILURE,
     payload: error
 });
 
-export function fetchPosts() {
+export function fetchUsers() {
     return function(dispatch) {
-        dispatch(fetchPostsStart());
+        dispatch(fetchUsersStart());
         axios
             .get("https://jsonplaceholder.typicode.com/users")
             .then((response) => {
                 console.log(response.data);
-                dispatch(fetchPostsSuccess(response.data));
+                dispatch(fetchUsersSuccess(response.data));
             })
             .catch(err => {
-                dispatch(fetchPostsFailure(err.message));
+                dispatch(fetchUsersFailure(err.message));
             });
     };
 }

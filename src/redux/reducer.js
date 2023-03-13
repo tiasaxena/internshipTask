@@ -1,23 +1,23 @@
 let initialState = {
-    posts: [],
+    users: [],
     loading: false,
     error: null,
 };
 
-const postReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
     switch(action.type) {
-        case "FETCH_POST_START": 
+        case "FETCH_USER_START": 
             return {
                 ...state,
                 loading: true,
             };
-        case "FETCH_POST_SUCCESS": 
+        case "FETCH_USER_SUCCESS": 
             return {
                 ...state,
                 loading: false,
-                posts: action.payload,
+                users: action.payload,
             };
-        case "FETCH_POST_FAILURE": 
+        case "FETCH_USER_FAILURE": 
             return {
                 ...state,
                 loading: false,
@@ -28,4 +28,4 @@ const postReducer = (state = initialState, action) => {
     }
 };
 
-export default postReducer;
+export default userReducer;
