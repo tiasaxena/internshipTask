@@ -44,7 +44,7 @@ const TableData = (wordToSearch) => {
         onClick={ () => dispatch(fetchUsers()) }>Fetch Users</button>
       }
       <Table size='lg' maxWidth={'100vw'} variant={'striped'} colorScheme='facebook'>
-        {matchedUsers.length > 0 || users.length > 0 && 
+        {(matchedUsers.length > 0 || users.length > 0) && 
           <Thead mb={'2rem'}>
             <Tr>
               <Th isNumeric className='text-[2rem]'>Id</Th>
