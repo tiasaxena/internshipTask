@@ -27,7 +27,7 @@ const MainBody = () => {
           onChange={onTextChange}
         />
       </InputGroup>
-      <Table size='md' colorScheme='facebook'>
+      <Table size='lg' variant={'striped'} colorScheme='facebook'>
         <Thead>
           <Tr className='text-'>
             <Th isNumeric className='text-[2rem]'>Id</Th>

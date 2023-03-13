@@ -84,13 +84,13 @@ const TableData = (wordToSearch) => {
           <ModalCloseButton />
           <ModalBody>
             <p>
-               Address: {address.street}, {address.city}, {address.zipcode}
+               <span className='font-bold'> Address: </span> {address.street}, {address.city}, {address.zipcode}
             </p>
             <p>
-               Phone: {phone}
+            <span className='font-bold'> Phone: </span> {phone}
             </p>
             <p>
-               Website: {website}
+            <span className='font-bold'> Website: </span> {website}
             </p>
           </ModalBody>
           <ModalFooter>
