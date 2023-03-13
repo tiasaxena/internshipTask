@@ -4,18 +4,31 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchUsers } from '../redux/action';
 
-function TableData() {
+const TableData = (wordToSearch) => {
+  const { users, loading } = useSelector((state) => ({ ...state.data }));
   const [ name, setName ] = useState('');
   const [ address, setAddress ] = useState({});
   const [ phone, setPhone ] = useState();
   const [ website, setWebsite ] = useState('');
+  let [ matchedUsers, setMatchedUsers ] = useState([]);
+
+
   const dispatch = useDispatch();
 
   useEffect( () => {
     dispatch(fetchUsers())
   }, []);
 
-  const { users, loading } = useSelector((state) => ({ ...state.data }));
+  const findMatches = (wordToMatch) => {
+    const regex = new RegExp(wordToMatch, "gim");
+    return users.filter( ({name, email, username}, index) => {
+      return (regex.test(name) || regex.test(email) || regex.test(username));
+    })
+  }
+
+  useEffect(()=> {
+    setMatchedUsers(findMatches(wordToSearch.wordToSearch));
+  }, [wordToSearch.wordToSearch.length])
 
   const OverlayTwo = () => (
     <ModalOverlay
@@ -31,7 +44,7 @@ function TableData() {
   
   return ( <>
         <Tbody >
-          {users.map((user, index) => {
+          {matchedUsers.length ? matchedUsers.map((user, index) => {
             return <Tr key={index}  
               onClick={() => {
                 onOpen();
@@ -46,7 +59,23 @@ function TableData() {
                 <Td className='font-medium text-base'>{user.username}</Td>
                 <Td className='font-medium text-base'>{user.email}</Td> 
               </Tr>
-          })}
+          }) : users.map((user, index) => {
+            return <Tr key={index}  
+              onClick={() => {
+                onOpen();
+                setName(user.name);
+                setAddress(user.address);
+                setPhone(user.phone);
+                setWebsite(user.website);
+              }}
+              className='hover:cursor-pointer'>
+                <Td isNumeric className='font-medium text-base'>{user.id}</Td>
+                <Td className='font-medium text-base'>{user.name}</Td>
+                <Td className='font-medium text-base'>{user.username}</Td>
+                <Td className='font-medium text-base'>{user.email}</Td> 
+              </Tr>
+          })
+          }
         </Tbody>
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         {overlay}
@@ -55,13 +84,13 @@ function TableData() {
           <ModalCloseButton />
           <ModalBody>
             <p>
-              <span className='font-semibold'> Address: </span> {address.street}, {address.city}, {address.zipcode}
+               Address: {address.street}, {address.city}, {address.zipcode}
             </p>
             <p>
-              <span className='font-semibold'> Phone: </span> {phone}
+               Phone: {phone}
             </p>
             <p>
-              <span className='font-semibold'> Website: </span> {website}
+               Website: {website}
             </p>
           </ModalBody>
           <ModalFooter>
