@@ -49,3 +49,42 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Observations Recorded
+
+<h2>1. Make a GET API call</h2>
+The request was made to the endpoint 'https://jsonplaceholder.typicode.com/users'. <br/> 
+The Fake API placeholder contains an array of objects. The objects are populated with user's data, including their id, name, username, email,    
+address.
+The adress is yet another object inside main object that contains informations like, street, suite, city, zip code, and geography.
+Futher geography holds latitudinal and longitudinal information. <br/>
+<img src="https://github.com/tiasaxena/internshipTask/blob/main/src/assets/jsonImage" />
+
+<br/>
+
+<h2>2. Rendering the Response</h2>
+
+For the project, in order to hit the API endpoint, a promise based HTTP client,
+**axios**
+was used to make HTTP requests from the browser and handle the transformation of request and response data.
+<br/>
+The data, so fetched, is displayed in the tabular format. Only the id, name, username, and email fields are populated. For creating the table, Chakra UI's 
+<a href="https://chakra-ui.com/docs/components/table/usage">Table</a>
+component has been used. <br/>
+<img src="https://github.com/tiasaxena/internshipTask/blob/main/src/assets/fetchedData" />
+
+**Added Feature**
+In order to make the basic React App more user friendly, type ahead feature has been added. The feature allows the user to input either the name, email, or username in the input area. Next, all the data that contained the specifies inputted word gets filtered out and is displayed in the tabular form. The Modal feature is consistent to this part as well.
+<img src="https://github.com/tiasaxena/internshipTask/blob/main/src/assets/Filter%20Operation" />
+
+
+
+<h2>3. Creating an Interactive Modal Popup</h2>
+An interactive modal is made using Chakra UI's
+<a href="https://chakra-ui.com/docs/components/modal/usage">Modal</a>
+component. The modal contains the rest of the information of the user.
+The modal pops up on the screen when the user clicks any of the rows. The modal can be closed by 'Esc' button or 'X' button at the top right or 'Close' button in the buttom right. When the Modal opens up, the background color changes and the text gets blurred to a specified extent.<br/>
+<img src="https://github.com/tiasaxena/internshipTask/blob/main/src/assets/ModalView" />
+
+<h2>4. Integrate Redux to store data</h2>
+Redux Toolkit is used to maintain a centralized data throughout the React App. The centralized data store and related methods and logics can be found in the src/redux folder. Redux prevents prop drilling which enhances the app's efficiency and prevents data leakage.
